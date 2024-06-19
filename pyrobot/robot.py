@@ -1,15 +1,10 @@
-import json
+import json, pathlib
 import time as time_true
-import pathlib
 import pandas as pd
 
-from datetime import datetime
-from datetime import timezone
-from datetime import timedelta
+from datetime import datetime, timezone, timedelta
 
-from typing import List
-from typing import Dict
-from typing import Union
+from typing import List, Dict, Union
 
 from pyrobot.trades import Trade
 from pyrobot.portfolio import Portfolio
@@ -630,15 +625,9 @@ class PyRobot():
         print("=" * 80)
         print("Pausing for the next bar")
         print("-" * 80)
-        print("Curr Time: {time_curr}".format(
-            time_curr=curr_bar_time.strftime("%Y-%m-%d %H:%M:%S")
-        )
-        )
-        print("Next Time: {time_next}".format(
-            time_next=next_bar_time.strftime("%Y-%m-%d %H:%M:%S")
-        )
-        )
-        print("Sleep Time: {seconds}".format(seconds=time_to_wait_now))
+        print(f"Curr Time: {curr_bar_time.strftime("%Y-%m-%d %H:%M:%S")}")
+        print(f"Next Time: {next_bar_time.strftime("%Y-%m-%d %H:%M:%S")}")
+        print(f"Sleep Time: {time_to_wait_now}")
         print("-" * 80)
         print('')
 

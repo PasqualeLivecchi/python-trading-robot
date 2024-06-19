@@ -29,7 +29,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'FILLED':
+        if self.order_status == "FILLED":
             return True
         else:
             return False
@@ -55,7 +55,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'REJECTED':
+        if self.order_status == "REJECTED":
             return True
         else:
             return False
@@ -81,7 +81,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'EXPIRED':
+        if self.order_status == "EXPIRED":
             return True
         else:
             return False
@@ -107,7 +107,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'REPLACED':
+        if self.order_status == "REPLACED":
             return True
         else:
             return False
@@ -133,7 +133,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'WORKING':
+        if self.order_status == "WORKING":
             return True
         else:
             return False
@@ -159,7 +159,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'PENDING_ACTIVATION':
+        if self.order_status == "PENDING_ACTIVATION":
             return True
         else:
             return False
@@ -185,7 +185,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'PENDING_CANCEL':
+        if self.order_status == "PENDING_CANCEL":
             return True
         else:
             return False
@@ -211,7 +211,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'PENDING_REPLACE':
+        if self.order_status == "PENDING_REPLACE":
             return True
         else:
             return False
@@ -237,7 +237,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'QUEUED':
+        if self.order_status == "QUEUED":
             return True
         else:
             return False
@@ -263,7 +263,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'ACCEPTED':
+        if self.order_status == "ACCEPTED":
             return True
         else:
             return False
@@ -290,7 +290,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'AWAITING_PARENT_ORDER':
+        if self.order_status == "AWAITING_PARENT_ORDER":
             return True
         else:
             return False
@@ -317,7 +317,7 @@ class OrderStatus():
         if refresh_order_info:
             self.trade_obj._update_order_status()
 
-        if self.order_status == 'AWAITING_CONDITION':
+        if self.order_status == "AWAITING_CONDITION":
             return True
         else:
             return False

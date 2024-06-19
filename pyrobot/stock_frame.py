@@ -1,12 +1,9 @@
 import pandas as pd
 
-from typing import List
-from typing import Dict
-from typing import Union
+from typing import List, Dict, Union
 
 from pandas.core.groupby import DataFrameGroupBy
-from pandas.core.window import RollingGroupby
-from pandas.core.window import Window
+from pandas.core.window import RollingGroupby, Window
 
 
 class StockFrame():
@@ -216,12 +213,10 @@ class StockFrame():
         if set(column_names).issubset(self._frame.columns):
             return True
         else:
-            raise KeyError("The following indicator columns are missing from the StockFrame: {missing_columns}".format(
-                missing_columns=set(column_names).difference(
-                    self._frame.columns)
-            ))
+            raise KeyError(f"The following indicator columns are missing from the StockFrame: {set(column_names).difference(
+                    self._frame.columns)}")
 
-    def _check_signals(self, indicators: dict, indciators_comp_key: List[str], indicators_key: List[str]) -> Union[pd.DataFrame, None]:
+    def _check_signals(self, indicators: dict, indicators_comp_key: List[str], indicators_key: List[str]) -> Union[pd.DataFrame, None]:
         """Returns the last row of the StockFrame if conditions are met.
 
         Overview:
@@ -251,10 +246,7 @@ class StockFrame():
             will be returned. If no signals are found then nothing will be returned.
         """
 
-        # Grab the last rows.
         last_rows = self._symbol_groups.tail(1)
-
-        # Define a list of conditions.
         conditions = {}
 
         # Check to see if all the columns exist.
@@ -288,15 +280,12 @@ class StockFrame():
         check_indicators = []
         
         # Split the name so we can check if the indicator exist.
-        for indicator in indciators_comp_key:
+        for indicator in indicators_comp_key:
             parts = indicator.split('_comp_')
             check_indicators += parts
 
         if self.do_indicator_exist(column_names=check_indicators):
-
-            for indicator in indciators_comp_key:
-                
-                # Split the indicators.
+            for indicator in indicators_comp_key:
                 parts = indicator.split('_comp_')
 
                 # Grab the indicators that need to be compared.
@@ -305,36 +294,20 @@ class StockFrame():
 
                 # If we have a buy operator, grab it.
                 if indicators[indicator]['buy_operator']:
-
-                    # Grab the Buy Operator.
                     buy_condition_operator = indicators[indicator]['buy_operator']
-
-                    # Grab the Condition.
-                    condition_1: pd.Series = buy_condition_operator(
-                        indicator_1, indicator_2
-                    )
+                    condition_1: pd.Series = buy_condition_operator(indicator_1, indicator_2)
 
                     # Keep the one's that aren't null.
                     condition_1 = condition_1.where(lambda x: x == True).dropna()
-
-                    # Add it as a buy signal.
                     conditions['buys'] = condition_1
 
                 # If we have a sell operator, grab it.
                 if indicators[indicator]['sell_operator']:
-
-                    # Grab the Sell Operator.
                     sell_condition_operator = indicators[indicator]['sell_operator']
-
-                    # Store it in a Pd.Series.
-                    condition_2: pd.Series = sell_condition_operator(
-                        indicator_1, indicator_2
-                    )
+                    condition_2: pd.Series = sell_condition_operator(indicator_1, indicator_2)
 
                     # keep the one's that aren't null.
                     condition_2 = condition_2.where(lambda x: x == True).dropna()
-
-                    # Add it as a sell signal.
                     conditions['sells'] = condition_2
 
         return conditions

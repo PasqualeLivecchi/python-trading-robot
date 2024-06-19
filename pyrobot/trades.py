@@ -1,8 +1,7 @@
 import json
 from datetime import datetime
 
-from typing import List
-from typing import Dict
+from typing import List, Dict
 
 from td.client import TDClient
 
@@ -711,18 +710,8 @@ class Trade():
 
         # If we have an order, then generate it.
         if self.order:
-
-            order_id = "{symbol}_{side}_{enter_or_exit}_{timestamp}"
-
-            order_id = order_id.format(
-                symbol=self.symbol,
-                side=self.side,
-                enter_or_exit=self.enter_or_exit,
-                timestamp=datetime.now().timestamp()
-            )
-
+            order_id = f"{self.symbol}_{self.side}_{self.enter_or_exit}_{datetime.now().timestamp()}"
             return order_id
-
         else:
             return ""
 
